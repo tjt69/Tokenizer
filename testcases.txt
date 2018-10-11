@@ -1,0 +1,461 @@
+Tokenizer.c Test Cases
+
+Travis Thiel
+
+Comp Arch Section 06
+
+Input:
+Expected output:No Input! Aborting...
+
+
+
+Actual output:No Input! Aborting...
+
+
+
+Input:"0"
+Expected output:
+
+Tokenizer: 0
+
+ Zero:  0
+
+
+Actual output:
+
+Tokenizer: 0
+
+ Zero:  0
+
+
+Input:"07732"
+Expected output:
+
+Tokenizer: 07732
+
+Octal:  07732
+
+
+Actual output:
+
+Tokenizer: 07732
+
+Octal:  07732
+
+
+Input:"7732"
+Expected output:
+
+Tokenizer: 7732
+
+Integer:	7732
+
+
+Actual output:
+
+Tokenizer: 7732
+
+Integer:        7732
+
+
+Input:"0x56"
+Expected output:
+
+Tokenizer: 0x56
+
+Hexadecimal:            0x56
+
+
+Actual output:
+
+Tokenizer: 0x56
+
+Hexadecimal:            0x56
+
+
+Input:"0xf"
+Expected output:
+
+Tokenizer: 0xf
+
+Hexadecimal:            0xf
+
+
+Actual output:
+
+Tokenizer: 0xf
+
+Hexadecimal:            0xf
+
+
+Input:"0.1"
+Expected output:
+
+Tokenizer: 0.1
+
+Float:  0.1
+
+
+Actual output:
+
+Tokenizer: 0.1
+
+Float:  0.1
+
+
+Input:"1e34"
+Expected output:
+
+Tokenizer: 1e34
+
+Float:  1e34
+
+
+Actual output:
+
+Tokenizer: 1e34
+
+Float:  1e34
+
+
+Input:"g"
+Expected output:
+
+Tokenizer: g
+
+Error Mal Character: g 
+
+
+Actual output:
+
+Tokenizer: g
+
+Error Mal Character: g 
+
+
+Input:"     1     2.0    "
+Expected output:
+
+Tokenizer: 1 2.0 
+
+Integer:        1
+
+
+
+Float:  2.0
+
+
+Actual output:
+
+Tokenizer: 1 2.0 
+
+Integer:        1
+
+
+
+Float:  2.0
+
+
+Input:" 0700 1234 3.1459e-10 "
+Expected output:
+
+Tokenizer: 0700 1234 3.1459e-10 
+
+Octal:  0700
+
+
+
+Integer:        1234
+
+
+
+Float:  3.1459e-10
+
+
+Actual output:
+
+Tokenizer: 0700 1234 3.1459e-10 
+
+Octal:  0700
+
+
+
+Integer:        1234
+
+
+
+Float:  3.1459e-10
+
+
+Input:"0.2.0  1e2e   1ex  0xz   1e-3+ 1e+2.0"
+Expected output:
+
+Tokenizer: 0.2.0 1e2e 1ex 0xz 1e-3+ 1e+2.0
+
+Float:  0.2
+
+Error Mal Character: . 
+
+
+ Zero:  0
+
+
+
+Float:  1e2
+
+Error Mal Character: e 
+
+
+
+
+Integer:        1
+
+Error Mal Character: e 
+
+
+Error Mal Character: x 
+
+
+
+
+ Zero:  0
+
+Error Mal Character: x 
+
+
+Error Mal Character: z 
+
+
+
+
+Float:  1e-3
+
+Error Mal Character: + 
+
+
+
+
+Float:  1e+2.0
+
+
+Actual output:
+
+Tokenizer: 0.2.0 1e2e 1ex 0xz 1e-3+ 1e+2.0
+
+Float:  0.2
+
+Error Mal Character: . 
+
+
+ Zero:  0
+
+
+
+Float:  1e2
+
+Error Mal Character: e 
+
+
+
+
+Integer:        1
+
+Error Mal Character: e 
+
+
+Error Mal Character: x 
+
+
+
+
+ Zero:  0
+
+Error Mal Character: x 
+
+
+Error Mal Character: z 
+
+
+
+
+Float:  1e-3
+
+Error Mal Character: + 
+
+
+
+
+Float:  1e+2.0
+
+
+Input:" t v    0677 0q 0.34526e3e 0X0 34.0.\ x56 0x204 56 0x2 09 .3        "
+Expected output:
+
+Tokenizer: t v 0677 0q 0.34526e3e 0X0 34.0.\ x56 0x204 56 0x2 09 .3 
+
+Error Mal Character: t 
+
+
+
+
+Error Mal Character: v 
+
+
+
+
+Octal:  0677
+
+
+
+ Zero:  0
+
+Error Mal Character: q 
+
+
+
+
+Float:  0.34526e3
+
+Error Mal Character: e 
+
+
+
+
+Hexadecimal:            0X0
+
+
+
+Float:  34.0
+
+Error Mal Character: . 
+
+
+Error Mal Character: \ 
+
+
+
+
+Error Mal Character: x 
+
+
+Integer:        56
+
+
+
+Hexadecimal:            0x204
+
+
+
+Integer:        56
+
+
+
+Hexadecimal:            0x2
+
+
+
+ Zero:  0
+
+Integer:        9
+
+
+
+Error Mal Character: . 
+
+
+Integer:        3
+
+
+Actual output:
+
+Tokenizer: t v 0677 0q 0.34526e3e 0X0 34.0.\ x56 0x204 56 0x2 09 .3 
+
+Error Mal Character: t 
+
+
+
+
+Error Mal Character: v 
+
+
+
+
+Octal:  0677
+
+
+
+ Zero:  0
+
+Error Mal Character: q 
+
+
+
+
+Float:  0.34526e3
+
+Error Mal Character: e 
+
+
+
+
+Hexadecimal:            0X0
+
+
+
+Float:  34.0
+
+Error Mal Character: . 
+
+
+Error Mal Character: \ 
+
+
+
+
+Error Mal Character: x 
+
+
+Integer:        56
+
+
+
+Hexadecimal:            0x204
+
+
+
+Integer:        56
+
+
+
+Hexadecimal:            0x2
+
+
+
+ Zero:  0
+
+Integer:        9
+
+
+
+Error Mal Character: . 
+
+
+Integer:        3
+
+
+Test cases for escape characters (In the program I had to change the char* argv points to with (*argv)[1]=c where char c = '\a')
+
+input: '\a'
+
+Expected output:
+
+Escape character:      [0x07]
+
+
+Actual output:
+
+Escape character:      [0x07]
+
+
+I could not figure out how to enter an escape character through the terminal
+
